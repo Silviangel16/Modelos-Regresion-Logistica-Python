@@ -22,13 +22,64 @@ Una empresa vinícola quiere saber qué características químicas distinguen su
 
 ```text
 modelos-lineales-generalizados-Python/
-├── Data/                   # Bases de datos
-│   ├── Churn_Modelling.csv #   Abandono de clientes (Kaggle)
-│   └── wine.data           #   Vinos (UCI)
-├── Actividad.pdf           # Informe del análisis en PDF
-├── analisis_mlg.ipynb      # Cuaderno con el análisis completo (ejercicios 1 y 2)
-├── requirements.txt        # Dependencias de Python
-└── README.md               # Este archivo
+├── Data/            
+│   ├── Churn_Modelling.csv 
+│   └── wine.data       
+├── Actividad.pdf          
+├── analisis_mlg.ipynb     
+├── requirements.txt
+├── Imagenes/    
+└── README.md              
 ```
-
 > **Nota:** el cuaderno lee los datos desde la carpeta `Data`, que debe estar junto a `analisis_mlg.ipynb`. Si `wine.data` no está, se descarga de UCI.
+>
+> ## 📌 Vistazo a los Principales Hallazgos
+
+### Ejercicio 1. Abandono de clientes
+
+| Hallazgo | Resultado | Lectura |
+|:---|:---:|:---|
+| Tasa de abandono | 20,4 % | Clase minoritaria: 2.037 de 10.000 clientes |
+| Edad | OR 1,075 por año | Cada año adicional aumenta 7,5 % los momios de abandono; quienes abandonan tienen en promedio 44,8 años frente a 37,4 |
+| Cliente activo | OR 0,345 | Los clientes activos tienen 65,5 % menos momios de abandonar |
+| Alemania vs. Francia | OR 2,383 | Los momios son 138,3 % mayores; la tasa de abandono es 32,4 % frente a 16,2 % |
+| Mujeres vs. hombres | OR 1,616 | Los momios de abandono son 61,6 % mayores |
+| Exactitud en prueba (umbral 0,50) | 81,0 % | Apenas supera el 79,2 % de predecir siempre "no abandona" |
+| Sensibilidad / especificidad (umbral 0,50) | 22,9 % / 96,2 % | El modelo deja sin detectar a la mayoría de los clientes que se van |
+| Sensibilidad / especificidad (umbral 0,20) | 68,9 % / 70,5 % | Al bajar el umbral se detectan más abandonos, a costa de más falsas alarmas |
+
+<p align="center">
+  <img src="Imagenes/abandono_pais_actividad.png" alt="Tasa de abandono por país y actividad" width="48%">
+  <img src="Imagenes/probabilidades_abandono_prueba.png" alt="Probabilidades estimadas de abandono en prueba" width="48%">
+</p>
+
+<p align="center">
+  <img src="Imagenes/curva_edad_actividad.png" alt="Probabilidad de abandono según la edad" width="60%">
+</p>
+
+### Ejercicio 2. Tipos de vino
+
+| Hallazgo | Resultado | Lectura |
+|:---|:---:|:---|
+| Exactitud en prueba | 86,8 % | 46 de 53 vinos bien clasificados; por clase: 88,9 %, 85,7 % y 85,7 % |
+| Intensidad del color, clase 3 vs. 1 | RRR 2,773 | Cada unidad adicional de color aumenta 177,3 % los momios de ser clase 3 |
+| Alcohol, clase 2 vs. 1 | RRR 0,013 | Más alcohol hace mucho menos probable la clase 2 frente a la 1 |
+| Ácido málico, clase 3 vs. 1 | RRR 5,685 | Cada unidad adicional multiplica por 5,7 los momios de ser clase 3 |
+| Estabilidad de la exactitud (200 particiones) | 86,5 % ± 3,6 | El 95 % central de las particiones va de 79,2 % a 92,5 % |
+| Estabilidad de los efectos | 100 % mismo signo, salvo uno | Solo el ácido málico en la clase 2 cambia de signo (66,5 %) |
+
+<p align="center">
+  <img src="Imagenes/alcohol_por_clase.png" alt="Alcohol por clase de vino" width="48%">
+  <img src="Imagenes/color_por_clase.png" alt="Intensidad del color por clase de vino" width="48%">
+</p>
+
+<p align="center">
+  <img src="Imagenes/probabilidades_clases_vino.png" alt="Probabilidades estimadas por clase" width="48%">
+  <img src="Imagenes/curva_color_clases.png" alt="Probabilidad de cada clase según el color" width="48%">
+</p>
+
+<p align="center">
+  <img src="Imagenes/estabilidad_exactitud.png" alt="Distribución de la exactitud en 200 particiones" width="60%">
+</p>
+
+> **Conclusión:** la edad, la actividad del cliente y el país explican bien quién abandona, pero con un umbral de 0,50 el modelo detecta pocos abandonos. En los vinos, la intensidad del color y el alcohol separan bien las tres clases; con solo 178 vinos, la exactitud es un rango y no un valor único, y el efecto del ácido málico en la clase 2 no es confiable.
