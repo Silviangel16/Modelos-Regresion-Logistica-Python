@@ -1,4 +1,4 @@
-<h1 align="center">📊 Modelos Lineales Generalizados para Clasificación</h1>
+<h1 align="center">📊 Modelos Lineales Generalizados de Regresión Logística</h1>
 
 <div align="center">
 
