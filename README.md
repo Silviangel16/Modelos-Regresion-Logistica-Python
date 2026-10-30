@@ -1,6 +1,25 @@
-<h1 align="center">📊 Modelos Lineales Generalizados para Clasificación</h1> <p align="center"> <img src="https://img.shields.io/badge/PYTHON-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/JUPYTER-NOTEBOOK-F37626?style=for-the-badge&logo=jupyter&logoColor=white" alt="Jupyter Notebook"> <img src="https://img.shields.io/badge/MLG-LOG%C3%8DSTICA%20BINARIA%20Y%20MULTINOMIAL-555555?style=for-the-badge" alt="Regresión logística"> <img src="https://img.shields.io/badge/EVALUACI%C3%93N-ENTRENAMIENTO%20%2F%20PRUEBA-2E8B3A?style=for-the-badge" alt="Machine Learning"> </p> <p align="center"> Este proyecto aplica modelos lineales generalizados en Python (<code>statsmodels</code>, <code>scikit-learn</code>, <code>pandas</code> y <code>seaborn</code>) para responder dos preguntas: qué factores se asocian con el abandono de clientes de un banco (regresión logística binaria) y qué características químicas permiten diferenciar tres clases de vino (regresión logística multinomial). </p> <p align="center"> <a href="https://www.kaggle.com/search?q=Churn_Modelling.csv">Dataset: abandono de clientes</a> · <a href="https://archive.ics.uci.edu/dataset/109/wine">Dataset: vinos</a> </p>
+<h1 align="center">📊 Modelos Lineales Generalizados para Clasificación</h1>
 
- 
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Jupyter Notebook](https://img.shields.io/badge/Jupyter_Notebook-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+![MLG](https://img.shields.io/badge/MLG-Logística_Binaria_y_Multinomial-555555?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/Machine_Learning-Aprendizaje_Supervisado-success?style=for-the-badge)
+
+</div>
+
+<p align="center">
+  Este proyecto aplica modelos lineales generalizados en Python (<code>statsmodels</code>, <code>scikit-learn</code>, <code>pandas</code> y <code>seaborn</code>) para responder dos preguntas: qué factores se asocian con el abandono de clientes de un banco (regresión logística binaria) y qué características químicas permiten diferenciar tres clases de vino (regresión logística multinomial).
+</p>
+
+<p align="center">
+  <a href="https://www.kaggle.com/search?q=Churn_Modelling.csv">Dataset: abandono de clientes</a> ·
+  <a href="https://archive.ics.uci.edu/dataset/109/wine">Dataset: vinos</a>
+</p>
+
+#### ¿Por qué se eligió este modelo?
+La regresión logística fue seleccionada deliberadamente como una línea base (baseline) tanto en lo metodológico como en lo analítico. Al tratarse de una simulación orientada a sentar las bases en Machine Learning, este enfoque permite priorizar la interpretabilidad total, facilitando la cuantificación directa del impacto de cada variable en el riesgo de abandono. Asimismo, este ejercicio sirve como punto de partida para dominar los fundamentos estadísticos y el flujo de trabajo de clasificación supervisada antes de explorar algoritmos de mayor complejidad.
 ### Caso 1. Abandono de clientes (regresión logística binaria)
 <img width="1559" height="260" alt="image" src="https://github.com/user-attachments/assets/8b4e1038-c079-4547-a968-3d6f8eef9abe" />
 
@@ -34,6 +53,21 @@ modelos-lineales-generalizados-Python/
 
 <img width="923" height="137" alt="image" src="https://github.com/user-attachments/assets/12645c79-42f9-4f90-971b-cca4a9b783d4" />
 
+
+## Factores asociados al abandono
+<p align="center"> <img src="imagenes/fig5_odds_ratios.png" alt="Odds ratios ajustados con intervalos de confianza del 95 %" width="650"> </p>
+
+Interpretación: Vivir en Alemania, tener mayor edad y un mayor saldo se asocian con mayores odds de abandono, mientras que ser cliente activo los reduce (OR ≈ 0,33). No hay diferencias significativas entre España y Francia (la raya cruza el 1). La devianza bajó cerca de un 14,4 % frente al modelo nulo (pseudo-R² de McFadden = 0,144).
+
+## Matriz de confusión en datos de prueba
+<p align="center"> <img src="imagenes/fig7_matriz_confusion.png" alt="Matriz de confusión en datos de prueba" width="600"> </p>
+
+Interpretación: Con un umbral de 0,50, el modelo clasificó bien a 1.549 clientes que permanecieron y detectó 82 abandonos, pero dejó escapar 326 abandonos y generó 44 falsas alarmas.
+
+## Indicadores de clasificación
+<p align="center"> <img src="imagenes/fig9_indicadores_clasificacion.png" alt="Indicadores de clasificación en prueba" width="650"> </p>
+
+Interpretación: El modelo tiene una exactitud del 81,5 % y una especificidad del 97,2 %, es decir, identifica muy bien a quienes permanecen. Sin embargo, su sensibilidad es de solo 20,1 %, por lo que necesita mejorar para detectar a tiempo los abandonos.
 
 ### Ejercicio 2. Tipos de vino
 
