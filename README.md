@@ -23,7 +23,7 @@
 
 ```text
 modelos-lineales-generalizados-Python/
-├── Enunciados_casos_1y2.pdf
+├── Enunciados_casos.pdf
 ├── Row_Data/            
 │   ├── Churn_Modelling.csv 
 │   └── wine.data                 
